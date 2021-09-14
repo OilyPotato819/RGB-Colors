@@ -15,5 +15,6 @@ function rgbPreview() {
     let rgbString = "rgb(" + rValue + ", " + gValue + ", " + bValue + ")";
 
     // Output: display rgb string and update the color preview
-    document.getElementById("rgbStrOut").innerHTML = rgbString;
+    document.getElementById("rgbOut").innerHTML = rgbString;
+    document.getElementById("display").style.background = rgbString;
 }
