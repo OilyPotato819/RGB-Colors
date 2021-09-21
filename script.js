@@ -1,20 +1,56 @@
 // RGB Colors
 
-// Event Listeners
+// Vairables to store HTML Elements
+let redInEl = document.getElementById("redIn");
+let greenInEl = document.getElementById("greenIn");
+let blueInEl = document.getElementById("blueIn");
+let rgbStringOut = document.getElementById("rgbOut").innerHTML;
+let displayEl = document.getElementById("display");
 
-document.getElementById("preview-btn").addEventListener("click", rgbPreview);
+// Event Listeners
+redInEl.addEventListener("input", rgbPreview)
+greenInEl.addEventListener("input", rgbPreview)
+blueInEl.addEventListener("input", rgbPreview)
 
 // Event Function
 function rgbPreview() {
     // Input: get rgb values
-    let rValue = document.getElementById("redIn").value;
-    let gValue = document.getElementById("greenIn").value;
-    let bValue = document.getElementById("blueIn").value;
+    let rValue = +redInEl.value;
+    let gValue = +greenInEl.value;
+    let bValue = +blueInEl.value;
+
+    // Validate Colors (Constrain colors between 0 - 255)
+    // Check rValue
+    if (rValue < 0) {
+        rValue = 0;
+        redInEl.value = 0;
+    } else if (rValue > 255) {
+        rValue = 255;
+        redInEl.value = 255;
+    }
+
+    // Check gValue
+    if (gValue < 0) {
+        gValue = 0;
+        greenInEl.value = 0;
+    } else if (gValue > 255) {
+        gValue = 255;
+        greenInEl.value = 255;
+    }
+
+    // Check bValue
+    if (bValue < 0) {
+        bValue = 0;
+        blueInEl.value = 0;
+    } else if (bValue > 255) {
+        bValue = 255;
+        blueInEl.value = 255;
+    }
 
     // Process: build rgb string rgb(__, __, __)
     let rgbString = "rgb(" + rValue + ", " + gValue + ", " + bValue + ")";
 
     // Output: display rgb string and update the color preview
-    document.getElementById("rgbOut").innerHTML = rgbString;
-    document.getElementById("display").style.background = rgbString;
+    rgbStringOut = rgbString;
+    displayEl.style.background = rgbString;
 }
